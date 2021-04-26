@@ -1,17 +1,108 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <fc-designer ref="designer"/>
+    <el-row>
+    <el-button round @click="getRule">getRule</el-button>
+    <el-button type="primary" @click="getOption">getOption</el-button>
+    <el-button type="success" @click="setRule">setRule</el-button>
+    <el-button type="info" @click="setOption">setOption</el-button>
+    <el-button type="waring" @click="display">display</el-button>
+    </el-row>
+    <el-row>
+      <form-create :rule="rule" v-model="fApi" :option="options" :value.sync="value"/>
+    </el-row>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import formCreate from '@form-create/element-ui';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+  },
+  data(){
+    return {
+        fApi:{},
+        value:{ 
+          // field1:'111',
+          // field2:'222',
+          // time:'11:11:11',
+        },
+        options: {
+            onSubmit:(formData)=>{
+                alert(JSON.stringify(formData))
+            }
+        },
+        rule:[
+          // {type:'input', field:'field1',title:'field1',value:'aaa'},
+          // {type:'input', field:'field2',title:'field2',value:'sss'},
+          // {type:'timePicker', field:'time',title:'time',value:'12:12:12'},
+          // {
+          //     type:'ElButton',
+          //     title:'Modify field1',
+          //     native: false,
+          //     on:{
+          //         click: ()=>{
+          //             this.rule[0].value+='a'
+          //         }
+          //     },
+          //     children: ['Click'],
+          // }
+        ]
+    }
+  },
+  methods: {
+      display() {
+        this.rule = this.$refs.designer.getRule()
+        // this.options = this.$refs.designer.getOption()
+      },
+      getRule() {
+        console.log('getRule!')
+        console.log(this.$refs.designer.getRule())
+      },
+      setRule() {
+        console.log('setRule!')
+      },
+      getOption() {
+        console.log('getOption!')
+        console.log(this.$refs.designer.getOption())
+      },
+      setOption() {
+        console.log('setOption!')
+      },
+        makeTemplate() {
+//          const rule = this.$refs.designer.getRule()
+//          const opt = this.$refs.designer.getOption()
+//          const ruleStr = formCreate.toJson(rule).replaceAll('\\','\\\\')
+//          const optStr = JSON.stringify(opt)
+//          return `<template>
+//          <form-create
+//            v-model="fapi"
+//            :rule="rule"
+//            :option="option"
+//            @submit="onSubmit"
+//          ></form-create>
+//        </template>
+//        
+//        <script>
+//        import formCreate from "@form-create/element-ui";
+//        
+//        export default {
+//          data () {
+//            return {
+//                fapi: null,
+//                rule: formCreate.parseJson('${ruleStr}'),
+//                option: formCreate.parseJson('${optStr}'),
+//            }
+//          },
+//          methods: {
+//            onSubmit (formData) {
+//              //todo 提交表单
+//            }
+//          }
+//        }
+//        <\/script>`
+        }
   }
 }
 </script>
