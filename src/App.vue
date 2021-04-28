@@ -1,40 +1,36 @@
 <template>
   <div id="app">
-    <design/>
-    <List corpId="1" userId="1" formId="1" />
-    <Info corpId="1" userId="1" formId="1" recordId="1"/>
+    <app-header v-if="showHeader()"> </app-header>
+    <router-view />
   </div>
 </template>
 
 <script>
-
-import Design from "./components/design"
-import List from './components/list'
-
-import Info from './components/info'
+import AppHeader from "./components/header";
+import {mapGetters} from 'vuex';
 export default {
   name: "App",
   components: {
-    Design,
-    List,
-    Info,
+    AppHeader,
   },
-  data() {
-    return {
-    };
+  computed: {
+    // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters(["isLogin"]),
   },
   methods: {
+    showHeader() {
+      return this.isLogin;
+    },
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

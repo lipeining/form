@@ -4,8 +4,46 @@ const Mock = require('mockjs')
 const Random = Mock.Random
 const mockList = [
     {
-        // url: `/api/corps/1/forms/1`,
-        url: /\/api\/corps\/\d+\/forms\/\d+$/,
+        url: /\/api\/corps\/\w+\/forms$/,
+        method: 'get',
+        func: () => {
+            return {
+                count: 1,
+                rows: [{
+                    rule: [{
+                        display: true,
+                        field: "pkh5qnzs0u8b",
+                        hidden: false,
+                        info: "input user name",
+                        props: {
+                            autofocus: true,
+                            clearable: true,
+                            maxlength: 20,
+                            minlength: 1,
+                            showWordLimit: true,
+                            type: "text",
+                        },
+                        title: "name",
+                        type: "input",
+                        value: undefined,
+                        _fc_drag_tag: "input",
+                    }],
+                    options: {
+                        form: {
+                            labelPosition: "right",
+                            size: "mini",
+                            labelWidth: "125px",
+                            hideRequiredAsterisk: false,
+                            showMessage: true,
+                            inlineMessage: false
+                        },
+                    },
+                }],
+            };
+        },
+    },
+    {
+        url: /\/api\/corps\/\w+\/forms\/\w+$/,
         method: 'get',
         func: () => {
             return {
@@ -29,19 +67,19 @@ const mockList = [
                 }],
                 options: {
                     form: {
-                      labelPosition: "right",
-                      size: "mini",
-                      labelWidth: "125px",
-                      hideRequiredAsterisk: false,
-                      showMessage: true,
-                      inlineMessage: false
+                        labelPosition: "right",
+                        size: "mini",
+                        labelWidth: "125px",
+                        hideRequiredAsterisk: false,
+                        showMessage: true,
+                        inlineMessage: false
                     }
-                  },
+                },
             }
         },
     },
     {
-        url: /\/api\/corps\/\d+\/forms\/\d+\/records$/,
+        url: /\/api\/corps\/\w+\/forms\/\w+\/records$/,
         method: 'get',
         func: () => {
             return {
@@ -62,7 +100,7 @@ const mockList = [
     },
     {
         // url: `/api/corps/1/forms/1/records/1`,
-        url: /\/api\/corps\/\d+\/forms\/\d+\/records\/\d+$/,
+        url: /\/api\/corps\/\w+\/forms\/\w+\/records\/\w+$/,
         method: 'get',
         func: () => {
             return { pkh5qnzs0u8b: Random.cname(), recordId: 1 }
@@ -70,6 +108,6 @@ const mockList = [
     },
 ];
 for (const mockItem of mockList) {
-    console.log(mockItem);
+    // console.log(mockItem);
     Mock.mock(mockItem.url, mockItem.method, mockItem.func);
 }

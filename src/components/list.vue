@@ -8,8 +8,7 @@
         v-for="col in cols"
       >
       </el-table-column>
-      <el-table-column label="操作" prop="option">
-      </el-table-column>
+      <el-table-column label="操作" prop="option"> </el-table-column>
     </el-table>
     <el-row>
       <li>
@@ -51,4 +50,3 @@ export default {
   },
 };
 </script>
-
